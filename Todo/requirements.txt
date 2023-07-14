@@ -1,3 +1,6 @@
 django
 django-crispy-forms
 requests
+python-dotenv
+six
+djano-tinymce
