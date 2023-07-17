@@ -8,6 +8,8 @@ from django.utils.encoding import force_bytes,force_str
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.contrib.auth import get_user_model
+from django.contrib.auth.views import LoginView
+from .forms import CustomAuthenticationForm
 # Create your views here.
 def activate_email(request,user,to_email):
     mail_subject = "Activate your user account"
@@ -53,5 +55,6 @@ def signup_view(request):
         form = CustomUserRegistrationForm()      
     return render(request,'user/signup.html',{"form":form})
 
-def login_view(request):
-    return render(request,'user/login.html')
+# Custom User Authentication of both username and password
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
