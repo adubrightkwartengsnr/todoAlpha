@@ -43,7 +43,7 @@
         </form>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
         </ul>
       {% else %}
@@ -59,8 +59,9 @@
 
 
 <main role="main" class="message-container d-flex justify-content-center align-items-center ">
+  <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 pt-2">
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }}" id="alert" role="alert">
@@ -71,7 +72,10 @@
     
     </div>
   </div>
+  </div>
 </main>
+
+
 
 
 {% block content %} {% endblock content %}
