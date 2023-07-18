@@ -1,5 +1,8 @@
+from typing import Any, Dict, Optional
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.http.request import HttpRequest
 from django.shortcuts import render,redirect
-from .forms import CustomUserRegistrationForm
+from .forms import CustomUserRegistrationForm,CustomUserAuthenticationForm
 from .tokens import account_activation_generator
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
@@ -9,7 +12,9 @@ from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView
-from .forms import CustomAuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
+from .authentication import EmailOrUsernameBackend
+
 # Create your views here.
 def activate_email(request,user,to_email):
     mail_subject = "Activate your user account"
@@ -55,6 +60,11 @@ def signup_view(request):
         form = CustomUserRegistrationForm()      
     return render(request,'user/signup.html',{"form":form})
 
-# Custom User Authentication of both username and password
 class CustomLoginView(LoginView):
-    authentication_form = CustomAuthenticationForm
+    authentication_form = CustomUserAuthenticationForm
+    template_name = 'user/login.html'
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
