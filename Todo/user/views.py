@@ -1,6 +1,3 @@
-from typing import Any, Dict, Optional
-from django.contrib.auth.base_user import AbstractBaseUser
-from django.http.request import HttpRequest
 from django.shortcuts import render,redirect
 from .forms import CustomUserRegistrationForm,CustomUserAuthenticationForm
 from .tokens import account_activation_generator
@@ -12,8 +9,7 @@ from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import AuthenticationForm
-from .authentication import EmailOrUsernameBackend
+
 
 # Create your views here.
 def activate_email(request,user,to_email):

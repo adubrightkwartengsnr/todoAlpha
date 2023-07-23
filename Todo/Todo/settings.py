@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'main',
     'user',
+    'todo_app',
 ]
 
 MIDDLEWARE = [
