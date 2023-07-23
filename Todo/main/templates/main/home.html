@@ -1,6 +1,48 @@
+
 {% extends 'main/base.html' %}
 {% load static %}
 
 {% block content %}
-<h1>This is the home page</h1>
-{% endblock content%}
+<link rel="stylesheet" type="text/css" href="{% static 'todo_app/style.css' %}">
+<div class="background-container">
+<div class="container">
+    <h1>Alpha Goal Task Master</h1>
+    <p>Start your day right with us</p>
+    <div class="get-started">
+    <a href="{% url 'signup' %}" class="btn btn-primary">Get started</a>
+    </div>
+    <a href="#"><small>Learn more</small></a>
+</div>
+</div>
+
+<style>
+     
+    body{
+        background-image: url("{% static 'todo_app/images/background-1.jpg' %}");
+        background-size: auto 100%;
+        background-repeat:no-repeat;
+        background-position:left;
+
+        
+    }
+    .background-container {
+        align-items: center;
+        position: relative;
+        display:flex;
+        justify-content: flex-end;
+        padding:120px;
+        margin: 100px;
+        height: 50vh;
+        
+      }
+    
+      .container{
+        align-content:center;
+        margin-left:500px
+      }
+
+</style>
+
+
+
+{% endblock content %}
